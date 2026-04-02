@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0b1120; /* Deep Tactical Navy */
+  color: #e2e8f0; /* Default Text Slate-200 */
+}
+
+/* Base Official UI Utilities (Police Theme) */
+.official-card {
+  @apply bg-[#1e293b]/60 backdrop-blur-xl rounded-xl shadow-xl border border-[#334155]/60 p-6 transition-all;
+}
+.official-btn-primary {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg px-4 py-2 font-semibold shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all hover:scale-105 outline-none tracking-wide;
+}
+.official-btn-amber {
+  @apply bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg px-4 py-2 font-semibold shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all hover:scale-105 outline-none tracking-wide;
+}
+.official-input {
+  @apply w-full border border-[#334155] rounded-lg px-4 py-2 bg-[#0f172a]/80 text-slate-100 placeholder-slate-500 focus:bg-[#1e293b] focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none;
+}
+.official-table-wrapper {
+  @apply bg-[#1e293b]/80 backdrop-blur-xl rounded-xl border border-[#334155]/60 overflow-hidden;
+}
