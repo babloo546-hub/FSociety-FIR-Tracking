@@ -1,0 +1,36 @@
+services:
+  # ---------------------------------------------------------------------------
+  # 1. Django Backend (Dockerized)
+  # ---------------------------------------------------------------------------
+  - type: web
+    name: fsociety-backend
+    runtime: docker
+    dockerContext: FIR_TRACKING/backend
+    dockerfile: Dockerfile
+    plan: free
+    region: singapore
+    envVars:
+      - key: DEBUG
+        value: "True" # Set to False for production later
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: "fsociety-backend.onrender.com,localhost"
+      - key: USE_MYSQL
+        value: "False" # Starting with SQLite for instant deploy
+      - key: PORT
+        value: "8000"
+
+  # ---------------------------------------------------------------------------
+  # 2. React Frontend (Static Build)
+  # ---------------------------------------------------------------------------
+  - type: static
+    name: fsociety-frontend
+    runtime: node
+    buildCommand: "npm install && VITE_API_URL=https://fsociety-backend.onrender.com/api/ npm run build"
+    staticPublishDir: FIR_TRACKING/frontend/dist
+    publishDir: FIR_TRACKING/frontend/dist
+    rootContext: FIR_TRACKING/frontend
+    envVars:
+      - key: NODE_VERSION
+        value: "18.16.0"

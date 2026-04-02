@@ -22,11 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv.load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-z))%+ao1qnxlvmh061@#tf(&5&d!w_+0per^a3@#$ffqo@po+y')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-change-me-in-prod')
 
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Update for production
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 
 # Application definition
