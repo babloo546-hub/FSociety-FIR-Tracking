@@ -12,8 +12,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install PyMySQL
 
 COPY . /app/
+RUN chmod +x /app/start.sh
 
 # Port exposed in docker-compose
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["/app/start.sh"]
