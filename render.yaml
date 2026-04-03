@@ -6,7 +6,7 @@ services:
     name: fsociety-backend
     runtime: docker
     dockerContext: FIR_TRACKING/backend
-    dockerfile: Dockerfile
+    dockerfilePath: ./FIR_TRACKING/backend/Dockerfile
     plan: free
     region: singapore
     envVars:
