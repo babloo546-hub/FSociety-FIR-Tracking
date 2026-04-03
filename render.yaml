@@ -24,13 +24,13 @@ services:
   # ---------------------------------------------------------------------------
   # 2. React Frontend (Static Build)
   # ---------------------------------------------------------------------------
-  - type: static
+  - type: web
     name: fsociety-frontend
-    runtime: node
+    runtime: static
     buildCommand: "npm install && VITE_API_URL=https://fsociety-backend.onrender.com/api/ npm run build"
-    staticPublishDir: FIR_TRACKING/frontend/dist
-    publishDir: FIR_TRACKING/frontend/dist
-    rootContext: FIR_TRACKING/frontend
+    staticPublishPath: ./dist
+    rootDir: FIR_TRACKING/frontend
+
     envVars:
       - key: NODE_VERSION
         value: "18.16.0"
