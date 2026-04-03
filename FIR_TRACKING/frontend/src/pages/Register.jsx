@@ -24,7 +24,12 @@ const Register = () => {
             setMessage('Registration successful! Please login.');
             setError(null);
         } catch (err) {
-            setError('Registration failed. Username might exist.');
+            const errorMsg = err.response?.data?.username?.[0] || 
+                           err.response?.data?.email?.[0] || 
+                           err.response?.data?.detail || 
+                           'Registration failed. Please try again.';
+            setError(errorMsg);
+            setMessage(null);
         }
     };
 

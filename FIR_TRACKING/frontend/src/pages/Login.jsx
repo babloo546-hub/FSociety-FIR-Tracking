@@ -20,7 +20,8 @@ const Login = () => {
         try {
             await login(credentials);
         } catch (err) {
-            setError('Invalid credentials or server error.');
+            const errorMsg = err.response?.data?.detail || 'Invalid username or password.';
+            setError(errorMsg);
         }
     };
 

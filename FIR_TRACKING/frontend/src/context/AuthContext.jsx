@@ -22,13 +22,19 @@ export const AuthProvider = ({ children }) => {
         fetchUser();
     }, []);
 
-    const login = (data) => {
-        localStorage.setItem('access_token', data.access);
-        localStorage.setItem('refresh_token', data.refresh);
-        // data processing if any
-        api.get('auth/me/').then(res => {
-            setUser(res.data);
-        }).catch(() => {});
+    const login = async (credentials) => {
+        try {
+            const response = await api.post('auth/login/', credentials);
+            const { access, refresh } = response.data;
+            localStorage.setItem('access_token', access);
+            localStorage.setItem('refresh_token', refresh);
+            
+            const userResponse = await api.get('auth/me/');
+            setUser(userResponse.data);
+            return userResponse.data;
+        } catch (error) {
+            throw error;
+        }
     };
 
     const logout = () => {
